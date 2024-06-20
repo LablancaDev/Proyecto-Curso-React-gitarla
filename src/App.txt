@@ -1,0 +1,137 @@
+//NOTAS DEL ARCHIVO App.js
+
+// Importamos el componenete que hemos creado en Header.jsx
+import { useState, useEffect } from 'react' //importamos useState y useEffect
+import Header from "./components/Header"//importar componente
+import Guitar from "./components/Guitar"//importar componente
+import { db } from './data/db'// importamos el array de guitarras
+// componente
+function App() {
+    // Definimos el state, es un hook de useState para autorizar a un usuario en un login por ejemplo
+    const [auth, setAuth] = useState([])
+    // Ceamos un segundo hook, el primer valor es el state y el segundo valor es la función para modificar el state
+    const [total, setTotal] = useState(0)
+    // Ceamos un tercer hook para el carrito de compras
+    const [cart, setCart] = useState([])
+
+    // No pueden haber hooks dentro de un condicional,ni bucle..da errores
+    if(auth) {
+
+    }
+
+    // Definimos el hook useEffect, useEffect tiene un callback dentro(una función)
+    useEffect(() => {
+        console.log('componente listo')
+    }, []) //si le pasamos un array vacío quiere decir que no tiene dependencias,si le pasamos valores, cada vez que cambien se ejecutar el useEffect
+
+
+  return (
+    <>
+     {/* Ahora vamos a reenderizar el componente importado para poder visualizarlo */}
+    <Header /> 
+
+    
+
+    <main className="container-xl mt-5">
+        <h2 className="text-center">Nuestra Colección</h2>
+
+        <div className="row mt-5">
+            <Guitar />
+        </div>
+    </main>
+
+
+    <footer className="bg-dark mt-5 py-5">
+        <div className="container-xl">
+            <p className="text-white text-center fs-4 mt-4 m-md-0">GuitarLA - Todos los derechos Reservados</p>
+        </div>
+    </footer>
+
+    </>
+  )
+}
+
+export default App
+
+// *REACT HOOKS:
+
+// React Hooks: Tanto los Hooks como los Componentes son la parte más importante de React
+//    Los Hooks son la base de React. permiten utilizar las diferentes funciones de React en los componentes
+//    react tiene una serie de Hooks pero también se pueden crear los propios hooks, están disponibles desde
+//    la versión 16.8 de React, previo a ello se tenían que crear Classes para crear y modificar el state,
+//    con  los Hooks no es necesario.    
+//    Los Hooks se dividen en Básicos y Adicionales
+
+// Hooks disponibles en React:
+
+    /*
+    -Básicos y más utilizados:
+    
+      useState
+      useEffect
+      useContext
+      
+    --------------------------
+
+      useReducer
+      useCallback
+      useMemo
+      useRef
+      useImpreativeHandle
+      useLayoutEffect
+      useInsertionEffect
+      useTransition
+      useDeferredValue
+      useId
+      useSyncExternalStore */ 
+
+    // * State: o estado en React (es la pieza más importante de React)
+    /*
+     El estado es una variable con información relevante en nuestra aplicación de React, algunas
+     veces el state pertenece a un componente en específico o algunas veces deseas compartirlo
+     a lo largo de diferentes componentes
+     
+     piensa en el state como el resultado de alguna interacción en el sitio o aplicación web:
+     El listado de clientes, la imagen a mostrar en una galería, si un usuario está autenticado o no.
+
+     El state es creado con el hook de useState()
+     
+     El estado es un objeto que contiene datos que pueden cambiar en el tiempo. En React, el estado se usa para controlar los cambios en la interfaz.
+     
+     1º Lo primero será importar el hook de useState
+     
+     Dentro de la ventana de desarrollador tenemos componets gracias a haber instalado la extensión react developer tools
+     en Components se muestra el arbol de componentes de nuestra aplicación
+
+    //* useState: es un Hook de React que te permite agregar una variable de estado a tu componente.
+     
+     * Reglas de los hooks:
+     
+     -Los Hooks se colocan en la parte superior de tus componentes de React (antes de return)
+     -No se deben colocar dentro de condicionales, tampoco depués de un return
+     
+     * useEffect:El hook useEffect se usa para ejecutar código cuando se renderiza el componente o cuando cambian las dependencias del efecto. Recibe dos parámetros: 
+     La función que se ejecutará al cambiar las dependencias o al renderizar el componente.
+
+     Después de useState es el más utilizado
+
+     useEffect siempre en un callback, que dependiendo como lo declares va a realizar diferentes acciones
+
+     -usos de useEffect:
+      Al ejecutarse automáticamente cuenado el componente esta listo, es un buen lugar para colocar código para
+      consultar una API O LocalStorage
+
+      Debido a que le podemos pasar una dependencia y estar escuchando por los cambios que sucedan en una variable, 
+      puede actualizar el componente cuando ese cambio suceda.
+
+      Dependiendo del valor que pasemos en el array de dependencias (o no pasemos nada) el hook de useEffect hará algo diferente.
+
+      * Props en React: Es una forma de compartit información entre componentes  
+
+      Los componenetes de React utilizan Props para comunicarse entre ellos.
+      Puedes pasarle información de un componente padre al hijo por medio de estos props
+
+      Los props se parecen a los atributos en HTML, pero puedes pasarle arrays, objetos o funciones
+
+      Los Props se pasasn del padre al hijo, nunca se pueden pasar del hijo al padre
+     */ 
